@@ -7,6 +7,8 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+    networks:
+      - contact-network
 
   backend:
     build: ./backend
@@ -16,6 +18,8 @@ services:
       - MONGO_URI=mongodb://mongo:27017/contactdb
     depends_on:
       - mongo
+    networks:
+      - contact-network
 
   frontend:
     build: ./frontend
@@ -23,6 +27,12 @@ services:
       - "4200:80"
     depends_on:
       - backend
+    networks:
+      - contact-network
 
 volumes:
   mongo-data:
+
+networks:
+    contact-network:
+       driver: bridge
