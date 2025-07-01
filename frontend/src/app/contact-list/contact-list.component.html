@@ -1,0 +1,12 @@
+<h2>Contact Manager</h2>
+<input [(ngModel)]="name" placeholder="Name" />
+<input [(ngModel)]="email" placeholder="Email" />
+<input [(ngModel)]="phone" placeholder="Phone" />
+<button (click)="addContact()">Add Contact</button>
+
+<ul>
+  <li *ngFor="let contact of contacts">
+    {{ contact.name }} - {{ contact.email }} - {{ contact.phone }}
+    <button (click)="deleteContact(contact._id)">Delete</button>
+  </li>
+</ul>
